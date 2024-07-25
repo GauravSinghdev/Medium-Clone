@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://medium-app.codewithkara.workers.dev/api/v1"
