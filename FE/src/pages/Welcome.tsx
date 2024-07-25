@@ -9,7 +9,7 @@ const Welcome = () => {
           <div className="text-3xl font-bold">
             "Welcome to the clone of Medium App"
           </div>
-          <div className="text-xl my-2">
+          <div className="text-xl mb-2">
             created by @codewithkara
           </div>
           <div className="flex justify-center">
