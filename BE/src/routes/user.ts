@@ -39,7 +39,10 @@ userRouter.post('/signup', async (c) => {
         id: user.id
       },c.env.JWT_SECRET);
   
-      return c.text(jwt);
+      return c.json({
+        jwt,
+        user
+      });
     } catch(e) {
       c.status(411);
       return c.text('Invalid');
@@ -81,11 +84,13 @@ userRouter.post('/signup', async (c) => {
         id: user.id
       },c.env.JWT_SECRET);
   
-      return c.text(jwt);
+      return c.json({
+        jwt,
+        user
+      });
     } catch(e) {
       c.status(411);
       return c.text('Invalid');
     }
-    return c.text('Hello Hono!')
   })
   

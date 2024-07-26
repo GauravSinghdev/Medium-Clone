@@ -14,14 +14,18 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
 
     });
 
+    const [error, setError] = useState(false);
+
     async function sendRequest() {
         try{
             const response = await axios.post(`${BACKEND_URL}/user/${type=== 'signin' ? "signin" : "signup"}`, postInputs);
-            const jwt = response.data;
+            const jwt = response.data.jwt;
+            const name = response.data.user
             localStorage.setItem("token", jwt);
+            localStorage.setItem("name", name.name);
             navigate("/blogs");
         }catch(e){
-
+            setError(true)
         }
         
     }
@@ -68,11 +72,19 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
                         }))
                     }} />
 
+                    
                     <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 mt-5 w-full">{type === 'signup' ? 'Sign up' : 'Sign in'}</button>
 
                 </div>
             </div>            
         </div> 
+        {
+            error && 
+            <div className='text-red-600 text-center' >
+                Error occurred! Please try again with some different credentials.
+            </div>
+
+        }
 
     </div>
   )
