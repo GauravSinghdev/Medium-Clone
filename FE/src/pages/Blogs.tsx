@@ -5,12 +5,13 @@ import BlogSkeleton from '../components/BlogSkeleton';
 
 const Blogs = () => {
     const {loading, blogs} = useBlogs();
-
+    console.log(typeof(blogs));
     if(loading) {
         return <div>
             <Appbar /> 
             <div  className="flex justify-center">
                 <div>
+                    <BlogSkeleton />
                     <BlogSkeleton />
                     <BlogSkeleton />
                     <BlogSkeleton />
@@ -31,7 +32,7 @@ const Blogs = () => {
             </div> */}
             <div className='flex flex-col gap-3 my-2'>
                 {
-                    blogs.map(blog => <BlogCard
+                    blogs.slice().reverse().map(blog => <BlogCard
                         id={blog.id}
                         authorName={blog.author.name || "Anonymous"}
                         title={blog.title}
