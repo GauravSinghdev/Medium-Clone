@@ -4,15 +4,15 @@ import { Avatar } from "./BlogCard";
 
 const FullBlog = ({ blog }: { blog: Blogs }) => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Appbar />
       <div className="flex justify-center">
-        <div className="grid grid-cols-12 gap-10 px-4 sm:px-6 md:px-10 pt-12 w-full max-w-screen-xl">
-          <div className="col-span-12 lg:col-span-4 order-1 lg:order-2">
+        <div className="grid grid-cols-12 gap-6 px-4 sm:px-6 md:px-10 py-12 w-full max-w-screen-lg overflow-y-auto">
+          <div className="col-span-12 lg:col-span-4 order-1 lg:order-2 mb-6 lg:mb-0">
             <div className="text-slate-600 text-lg">Author</div>
             <div className="flex w-full pt-4">
               <div className="pr-4 flex flex-col justify-center">
-                <Avatar size={"big"} name={blog.author.name || "Anonymous"} />
+                <Avatar size="big" name={blog.author.name || "Anonymous"} />
               </div>
               <div>
                 <div className="text-xl font-bold">
@@ -29,7 +29,7 @@ const FullBlog = ({ blog }: { blog: Blogs }) => {
               {blog.title}
             </div>
             <div className="text-slate-500 pt-2">Posted on 2nd Aug, 2024</div>
-            <div className="pt-4">{blog.content}</div>
+            <div className="pt-4 text-justify">{blog.content}</div>
           </div>
         </div>
       </div>
