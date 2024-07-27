@@ -1,22 +1,26 @@
 import { Link } from 'react-router-dom';
 import { Avatar } from './BlogCard';
+import { PiNotePencil } from "react-icons/pi";
+
 
 const Appbar = () => {
   let fName = localStorage.getItem("name");
   return (
     <div className='border-b flex justify-between px-4 sm:px-6 md:px-10 lg:px-20 py-2 items-center'>
       <div className='text-2xl sm:text-3xl font-bold font-[serif] cursor-pointer'>
-        <Link to="/blogs">Medium</Link>
+        <a href="/blogs">Medium</a>
       </div>
 
       <div className='flex items-center'>
-        <Link
-          to="/publish"
+        <a
+          href="/publish"
           type="button"
-          className="focus:outline-none text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-xl text-sm px-3 sm:px-5 py-2 me-2 sm:me-5"
+          className="text-back font-medium rounded-xl text-md text-slate-600 hover:text-slate-900 px-3 sm:px-5 py-2 me-2 sm:me-5 flex gap-1 sm:gap-2"
         >
-          Add Blog +
-        </Link>
+          <PiNotePencil className='w-6 h-6' />
+          Write
+
+        </a>
 
         <Avatar size="big" name={fName || "Anonymous"} />
       </div>

@@ -12,10 +12,9 @@ const Publish = () => {
     <div>
         <Appbar/>
 
-        <div className="flex justify-center w-full pt-8">
+        <div className="flex justify-center w-full pt-8 px-5">
             <div className="max-w-screen-lg w-full">
-                <label className="block mb-2 text-sm font-medium text-gray-900">Your Topic</label>
-                <input onChange={e => setTitle(e.target.value)} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded block w-full p-2.5 outline-none" placeholder="Title"/>
+                <input onChange={e => setTitle(e.target.value)} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-3xl rounded block w-full p-2.5 outline-none border-none border-l-2" placeholder="Title"/>
 
                <TextEditor onChange={(e) => {
                 setDescription(e.target.value)
@@ -34,8 +33,8 @@ const Publish = () => {
                             });
                             navigate(`/blog/${response.data.id}`);
                         }}
-                        type="submit" className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-                        Publish post
+                        type="submit" className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                        Publish
                     </button>    
                 </div>
             </div>
@@ -52,11 +51,11 @@ function TextEditor({onChange}: {onChange: (e: ChangeEvent<HTMLTextAreaElement>)
     return (
         
         <div className="mt-2">
-            <div className="w-full mb-4 border">
+            <div className="w-full mb-4">
                 
                     <div className="flex items-center justify-between">
-                        <div className=" bg-white rounded-b-lg w-full">                            
-                            <textarea onChange={onChange} id="editor" rows={8} className="block w-full p-2 text-sm text-gray-800 bg-white focus:outline-none" placeholder="Write an article..." required />
+                        <div className=" bg-white rounded-b-lg w-full ">                            
+                            <textarea onChange={onChange} id="editor" rows={8} className="block w-full p-2 text-xl text-gray-800 bg-white focus:outline-none border-none outline-none" placeholder="Tell your story. . ." required />
                         </div>
                     </div>
             </div>
