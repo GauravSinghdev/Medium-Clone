@@ -22,7 +22,7 @@ const BlogCard = ({ id, authorName, title, content, publishedDate } : BlogCardPr
                   <div className='flex justify-center flex-col pl-2'>
                       <Circle/>
                   </div>
-                  <div className='pl-2 font-thin text-slate-500 flex justify-center flex-col'>
+                  <div className='pl-2 font-thin text-slate-500 flex justify-center flex-col text-sm'>
                       {publishedDate}
                   </div>
                   

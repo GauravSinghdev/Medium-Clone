@@ -37,8 +37,15 @@ const Blogs = () => {
                         authorName={blog.author.name || "Anonymous"}
                         title={blog.title}
                         content={blog.content}
-                        publishedDate={new Date(blog.createdDate).toLocaleDateString()} // Formatting date properly
-                        />)
+                        publishedDate={new Date(blog.createdDate).toLocaleString('en-IN', {
+                            year: '2-digit',
+                            month: 'numeric',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true // Use 'false' for 24-hour time
+                          })}
+                    />)
                 }
                 
             </div>

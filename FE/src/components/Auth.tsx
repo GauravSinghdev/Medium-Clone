@@ -50,7 +50,7 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
 
                 <div className='mt-10 flex flex-col gap-2'>
                     {
-                        type === 'signup' ? <LabelledInput label="Name" placeholder='ABC Singh  .  .  .' onChange={(e) => {
+                        type === 'signup' ? <LabelledInput label="Name" type={'Username'} placeholder='ABC Singh  .  .  .' onChange={(e) => {
                             setPostInputs(prev => ({
                                 ...prev, 
                                 name:e.target.value
@@ -102,7 +102,7 @@ function LabelledInput({label, placeholder, onChange, type} : LabelledInputType)
         <div>
             <div>
                 <label className="block m-1 text-sm text-black font-semibold">{label}</label>
-                <input onChange={onChange} type={type || "text"} id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder={placeholder} required />
+                <input onChange={onChange} type={type || "text"} id="first_name" className={`bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${type === 'Username' ? 'text-transform: capitalize': ''}`} placeholder={placeholder} required />
             </div>
         </div>
     )

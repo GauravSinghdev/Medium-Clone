@@ -3,6 +3,8 @@ import Appbar from "./Appbar";
 import { Avatar } from "./BlogCard";
 
 const FullBlog = ({ blog }: { blog: Blogs }) => {
+
+  console.log(blog);
   return (
     <div className="min-h-screen flex flex-col">
       <Appbar />
@@ -28,7 +30,7 @@ const FullBlog = ({ blog }: { blog: Blogs }) => {
             <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold">
               {blog.title}
             </div>
-            <div className="text-slate-500 pt-2">Posted on 2nd Aug, 2024</div>
+            <div className="text-slate-500 pt-2">{blog.createdDate}</div>
             <div className="pt-4 text-justify">{blog.content}</div>
           </div>
         </div>
