@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id       Int   @id @default(autoincrement())
-  name     String?
+  name     String? @unique
   username String @unique
   password String
   posts    Blog[]
@@ -24,3 +24,5 @@ model Blog {
   createdDate DateTime @default(now())
   author    User     @relation(fields: [authorId], references: [id])
 }
+
+//npx prisma migrate dev --name init_schema

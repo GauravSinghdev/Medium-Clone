@@ -21,7 +21,7 @@ const DropMenu = () => {
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                    <a href="/my-settings" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                         Settings
                     </a>
                 </li>

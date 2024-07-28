@@ -7,6 +7,7 @@ import Welcome from './pages/Welcome'
 import Publish from './pages/Publish'
 import NotFoundPage from './components/NotFoundPage'
 import MyBlogs from './pages/MyBlogs'
+import Setting from './pages/Setting'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/publish" element={<Publish />} />
           <Route path="/my-blogs" element={<MyBlogs />} />
+          <Route path="/my-settings" element={<Setting />} />
         </Routes>
       </BrowserRouter>
     </>
