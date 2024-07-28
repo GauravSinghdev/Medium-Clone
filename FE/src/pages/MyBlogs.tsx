@@ -3,11 +3,16 @@ import Appbar from '../components/Appbar'
 import useBlogs from '../hooks'
 import BlogSkeleton from '../components/BlogSkeleton';
 
-const Blogs = () => {
+const MyBlogs = () => {
 
     const {loading, blogs} = useBlogs();
     console.log(typeof(blogs));
-    // const userName = localStorage.getItem('name');
+    console.log(blogs);
+    const userName = localStorage.getItem('name');
+    
+
+    const newBlogs = blogs.filter((ele) => ele.author.name === userName)
+
     // blogs.map((ele) => {
     //     if(ele.author.name === userName)
     //     {
@@ -20,6 +25,9 @@ const Blogs = () => {
             <Appbar /> 
             <div  className="flex justify-center">
                 <div>
+                {/* <div className='text-5xl font-bold font-[cursive] my-5 underline underline-offset-4 text-center'>
+                Your Stories
+            </div> */}
                     <BlogSkeleton />
                     <BlogSkeleton />
                     <BlogSkeleton />
@@ -35,27 +43,25 @@ const Blogs = () => {
   return (
     <div>
         <Appbar/>
-        <div className='flex flex-col items-center'>
-            {/* <div className='text-5xl font-bold font-[cursive] my-1 text-left underline underline-offset-4'>
-                Stories
+        <div className='flex flex-col justify-center items-center'>
+        {/* <div className='text-5xl font-semibold font-[cursive] my-5 underline underline-offset-4'>
+                Your Stories
             </div> */}
             <div className='flex flex-col gap-3 my-2'>
                 {
-                    blogs.slice().reverse().map(blog => <BlogCard
+                    newBlogs.slice().reverse().map(blog => <BlogCard
                         id={blog.id}
                         authorName={blog.author.name || "Anonymous"}
                         title={blog.title}
                         content={blog.content}
                         publishedDate={new Date(blog.createdDate).toLocaleString('en-IN', {
-                            year: 'numeric',
+                            year: '2-digit',
                             month: 'numeric',
                             day: 'numeric',
                             hour: '2-digit',
                             minute: '2-digit',
-                            second: '2-digit',
-                            hour12: false // Use 'false' for 24-hour time
+                            hour12: true // Use 'false' for 24-hour time
                           })}
-                          
                     />)
                 }
                 
@@ -67,4 +73,4 @@ const Blogs = () => {
   )
 }
 
-export default Blogs
+export default MyBlogs

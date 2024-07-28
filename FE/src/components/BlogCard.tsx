@@ -9,15 +9,22 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ id, authorName, title, content, publishedDate } : BlogCardProps) => {
+  
+  let newAuthorName;
+  console.log(`name is ${authorName}`)
+  if(authorName == localStorage.getItem('name'))
+  {
+    newAuthorName = "Me";
+  }
   return (
     <Link to={`/blog/${id}`}>
-            <div className='border-b border-slate-200 p-4 pb-4 w-screen max-w-screen-md cursor-pointer'>
+            <div className='border-b border-slate-200 sm:p-4 py-4 p-2 w-screen max-w-screen-md cursor-pointer'>
               <div className='flex'>
                   <div className='flex justify-center flex-col'>
                       <Avatar size={'small'} name={authorName}/>
                   </div>
                   <div className='font-extralight pl-2 flex justify-center flex-col'>
-                      {authorName}
+                      {newAuthorName || authorName}
                   </div>
                   <div className='flex justify-center flex-col pl-2'>
                       <Circle/>

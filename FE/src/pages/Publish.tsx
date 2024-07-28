@@ -11,6 +11,11 @@ const Publish = () => {
     const titleInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        if(!token){
+            navigate("/signin");
+            return;
+        }
         if (titleInputRef.current) {
             titleInputRef.current.focus();
         }

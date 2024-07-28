@@ -7,6 +7,12 @@ import { BACKEND_URL } from '../config';
 const Auth = ({type}: {type: "signup" | "signin"}) => {
 
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+        navigate("/blogs");
+        return;
+    }
     const [postInputs, setPostInputs] = useState<SignupInput>({
         name: "",
         username: "",
@@ -23,6 +29,7 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
             const name = response.data.user
             localStorage.setItem("token", jwt);
             localStorage.setItem("name", name.name);
+            localStorage.setItem("email", postInputs.username || "");
             navigate("/blogs");
         }catch(e){
             setError(true)
