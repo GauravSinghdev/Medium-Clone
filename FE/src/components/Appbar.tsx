@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Avatar } from './BlogCard';
 import { PiNotePencil } from "react-icons/pi";
 import DropMenu from './DropMenu';
+import { Link } from 'react-router-dom';
 
 const Appbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,7 +32,7 @@ const Appbar = () => {
   return (
     <div className='border-b flex justify-between px-4 sm:px-6 md:px-10 lg:px-20 py-1 items-center'>
       <div className='text-2xl sm:text-3xl font-bold font-[serif] cursor-pointer'>
-        <a href="/blogs">Medium</a>
+        <Link to="/blogs">Medium</Link>
       </div>
 
       <div className='flex items-center'>
