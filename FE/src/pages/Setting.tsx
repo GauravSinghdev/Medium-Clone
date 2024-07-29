@@ -1,12 +1,11 @@
 import Appbar from "../components/Appbar"
+import Dashboard from "../components/Dashboard"
 
 const Setting = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Appbar/>
-
-      <div>Setting Page is inprogress</div>
-
+      <Dashboard/>
     </div>
   )
 }

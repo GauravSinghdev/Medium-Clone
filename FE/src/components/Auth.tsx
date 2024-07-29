@@ -24,7 +24,7 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
     const [spin, setSpin] = useState(false);
     const [error, setError] = useState(false);
 
-    async function sendRequest() {
+    const sendRequest = async () => {
         try{
             setSpin(true);
             const response = await axios.post(`${BACKEND_URL}/user/${type=== 'signin' ? "signin" : "signup"}`, postInputs);

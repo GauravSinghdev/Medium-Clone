@@ -47,9 +47,10 @@ userRouter.post('/signup', async (c) => {
       c.status(411);
       return c.text('Invalid');
     }
-  })
-  
-  userRouter.post('/signin', async (c) => {
+})
+
+//new route 
+userRouter.post('/signin', async (c) => {
     const body = await c.req.json();
     const { success } = signinInput.safeParse(body);
 
@@ -92,5 +93,40 @@ userRouter.post('/signup', async (c) => {
       c.status(411);
       return c.text('Invalid');
     }
-  })
+})
+
+userRouter.delete('/delete', async (c) => {
+  try{
+    const authHeader = c.req.header('authorization') || ""; // Remove error of TypeScript
+    const user = await verify(authHeader, c.env.JWT_SECRET);
+
+    if(!user)
+    {
+      c.status(403);
+      return c.json({
+        message: "not logged in"
+      })
+    }
+
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+
+    // Use Prisma to delete the user by ID
+    const result = await prisma.user.delete({
+      where: {
+        id: Number(user.id), // Assuming ID is a number; adjust if it's a different type
+      },
+    });
+
+    // Respond with a success message
+    c.status(200);
+    return c.json({ message: 'User deleted successfully', result });
+
+  }catch(e){
+    c.status(411);
+    return c.text('Invalid');
+  }
+})
+
   
