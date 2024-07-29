@@ -25,8 +25,8 @@ const Dashboard = () => {
   const [bio, setBio] = useState<string>(''); // State for bio text
 
   const handleBioChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    const b = e.target.value.trim();
-    console.log(b);
+    const b = e.target.value;
+    console.log(b.trim());
     console.log(b.length)
     setBio(b); // Update bio state
   };
@@ -59,9 +59,10 @@ const Dashboard = () => {
             Authorization: token,
         },
     });
+      setBio(response.data.User.bio);
       console.log(response.data);
-      setBio(response.data.User)
       console.log('Bio added user account');
+      showBio();
     } catch (error) {
       console.error('Failed to edit bio', error);
     }

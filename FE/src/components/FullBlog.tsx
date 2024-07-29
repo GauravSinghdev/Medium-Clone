@@ -4,30 +4,41 @@ import Appbar from "./Appbar";
 import { Avatar } from "./BlogCard";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { CgShapeZigzag } from "react-icons/cg";
 
 const FullBlog = ({ blog }: { blog: Blogs }) => {
 
   const [bio, setBio] = useState<String>("");
+
   const showBio = async () => {
-    try{
-      console.log("hey")
+    try {
+      console.log("hey");
       const token = localStorage.getItem("token");
       const response = await axios.get(`${BACKEND_URL}/user/user-details`,{
         headers: {
           Authorization: token,
         }
       });
-      console.log(response.data.User)
+      console.log(response.data.User);
       setBio(response.data.User.bio);
       console.log('Got Bio from BE');
     } catch (error) {
       console.error('Failed to get bio', error);
     }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     showBio();
-  },[])
+  }, []);
+
+  // Convert and format the blog creation date
+  const formattedDate = new Date(blog.createdDate).toLocaleDateString("en-US", {
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true // Use 'false' for 24-hour time
+  });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -54,8 +65,11 @@ const FullBlog = ({ blog }: { blog: Blogs }) => {
             <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold">
               {blog.title}
             </div>
-            <div className="text-slate-500 pt-2">{blog.createdDate}</div>
             <div className="pt-4 text-justify">{blog.content}</div>
+            <div className="text-slate-900 m-10 text-right flex justify-end items-center gap-1">
+              <CgShapeZigzag />
+              {formattedDate}
+            </div>
           </div>
         </div>
       </div>
