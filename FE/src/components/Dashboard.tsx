@@ -94,7 +94,7 @@ const Dashboard = () => {
     <div className="mx-4 max-w-screen-2xl mt-20 sm:mx-8 xl:mx-auto">
       <div className="grid grid-cols-8 pt-3 sm:grid-cols-10">
         <div className="col-span-8 overflow-hidden rounded-xl bg-white px-4 py-6 sm:bg-gray-50 sm:px-8 sm:shadow">
-          <div className="pt-4">a
+          <div className="pt-4">
             <h1 className="py-2 text-2xl font-semibold">Account Settings</h1>
           </div>
           <hr className="my-4" />
