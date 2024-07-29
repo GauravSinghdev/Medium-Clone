@@ -56,8 +56,7 @@ const MyBlogs = () => {
                         title={blog.title}
                         content={blog.content}
                         publishedDate={new Date(blog.createdDate).toLocaleString('en-IN', {
-                            year: '2-digit',
-                            month: 'numeric',
+                            month: 'long',
                             day: 'numeric',
                             hour: '2-digit',
                             minute: '2-digit',

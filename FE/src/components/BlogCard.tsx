@@ -11,6 +11,7 @@ interface BlogCardProps {
 const BlogCard = ({ id, authorName, title, content, publishedDate } : BlogCardProps) => {
   
   let newAuthorName;
+  let dateString = publishedDate.replace('am', 'AM').replace('pm', 'PM');
   console.log(`name is ${authorName}`)
   if(authorName == localStorage.getItem('name'))
   {
@@ -30,7 +31,8 @@ const BlogCard = ({ id, authorName, title, content, publishedDate } : BlogCardPr
                       <Circle/>
                   </div>
                   <div className='pl-2 font-thin text-slate-500 flex justify-center flex-col text-sm'>
-                      {publishedDate}
+                  {`${Math.ceil(content.length/100)} min read`}
+
                   </div>
                   
               </div>
@@ -40,8 +42,9 @@ const BlogCard = ({ id, authorName, title, content, publishedDate } : BlogCardPr
         <div className='text-md font-thin'>
             {content.slice(0,100) + "..."}
         </div>
-        <div className='text-slate-400 text-sm font-thin pt-4'>
-            {`${Math.ceil(content.length/100)} min read`}
+        <div className='text-slate-500 text-sm font-thin pt-4'>
+        {dateString}
+
         </div>
     </div>
     </Link>
