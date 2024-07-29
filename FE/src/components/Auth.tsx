@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { SignupInput } from '@codewithkara/medium-common'
 import axios from 'axios';
 import { BACKEND_URL } from '../config';
+import { Spinner } from './Spinner';
 
 const Auth = ({type}: {type: "signup" | "signin"}) => {
 
@@ -20,10 +21,12 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
 
     });
 
+    const [spin, setSpin] = useState(false);
     const [error, setError] = useState(false);
 
     async function sendRequest() {
         try{
+            setSpin(true);
             const response = await axios.post(`${BACKEND_URL}/user/${type=== 'signin' ? "signin" : "signup"}`, postInputs);
             const jwt = response.data.jwt;
             const name = response.data.user
@@ -32,7 +35,8 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
             localStorage.setItem("email", postInputs.username || "");
             navigate("/blogs");
         }catch(e){
-            setError(true)
+            setSpin(false);
+            setError(true);
         }
         
     }
@@ -80,13 +84,26 @@ const Auth = ({type}: {type: "signup" | "signin"}) => {
                     }} />
 
                     
-                    <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 mt-5 w-full">{type === 'signup' ? 'Sign up' : 'Sign in'}</button>
+                    <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 mt-5 w-full">
+                        <div className='grid grid-cols-5 gap-1'>
+                            <div className='col-span-3 text-right me-1.5'>
+                            {type === 'signup' ? 'Sign up' : 'Sign in'}
+
+                            </div>
+                            <div className='col-span-2'>
+                                { spin && <Spinner size={"small"}/>}
+                            </div>
+                        </div>
+                        
+                        
+                    
+                    </button>
 
                 </div>
             </div>            
         </div> 
         {
-            error && 
+            error &&
             <div className='text-red-600 text-center' >
                 Error occurred! Please try again with some different credentials.
             </div>

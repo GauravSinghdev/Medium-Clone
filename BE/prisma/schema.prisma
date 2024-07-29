@@ -8,21 +8,21 @@ datasource db {
 }
 
 model User {
-  id       Int   @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   name     String? @unique
-  username String @unique
+  username String  @unique
   password String
-  posts    Blog[]
+  bio      String?
+  createdDate DateTime @default(now())
+  posts    Blog[] @relation("UserPosts")
 }
 
 model Blog {
-  id        Int   @id @default(autoincrement())
-  authorId  Int
-  title     String
-  content   String
-  published Boolean  @default(false)
+  id          Int      @id @default(autoincrement())
+  authorId    Int
+  title       String
+  content     String
+  published   Boolean  @default(false)
   createdDate DateTime @default(now())
-  author    User     @relation(fields: [authorId], references: [id])
+  author      User     @relation("UserPosts", fields: [authorId], references: [id], onDelete: Cascade)
 }
-
-//npx prisma migrate dev --name init_schema

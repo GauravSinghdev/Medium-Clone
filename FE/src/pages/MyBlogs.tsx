@@ -47,6 +47,7 @@ const MyBlogs = () => {
         {/* <div className='text-5xl font-semibold font-[cursive] my-5 underline underline-offset-4'>
                 Your Stories
             </div> */}
+            { newBlogs.length > 0 ?
             <div className='flex flex-col gap-3 my-2'>
                 {
                     newBlogs.slice().reverse().map(blog => <BlogCard
@@ -65,7 +66,19 @@ const MyBlogs = () => {
                     />)
                 }
                 
+            </div> :
+            <div className="flex justify-center items-center">
+            <div className="text-center mt-40">
+                <div className="text-4xl font-bold text-gray-700">
+                    No Stories Yet
+                </div>
+                <div className="mt-4 text-xl text-gray-500">
+                    Click <a href='/publish' className="font-semibold text-blue-600 hover:underline hover:underline-offset-2">Here</a> to start writing your stories.
+                </div>
             </div>
+        </div>
+        
+        }
         </div>
     </div>
     

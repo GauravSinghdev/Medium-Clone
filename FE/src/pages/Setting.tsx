@@ -1,7 +1,13 @@
+import Appbar from "../components/Appbar"
 
 const Setting = () => {
   return (
-    <div>Setting Page is inprogress</div>
+    <div>
+      <Appbar/>
+
+      <div>Setting Page is inprogress</div>
+
+    </div>
   )
 }
 

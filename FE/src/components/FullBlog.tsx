@@ -11,7 +11,7 @@ const FullBlog = ({ blog }: { blog: Blogs }) => {
       <div className="flex justify-center">
         <div className="grid grid-cols-12 gap-6 px-4 sm:px-6 md:px-10 py-12 w-full max-w-screen-lg overflow-y-auto">
           <div className="col-span-12 lg:col-span-4 order-1 lg:order-2 mb-6 lg:mb-0">
-            <div className="text-slate-600 text-lg">Author</div>
+            <div className="text-slate-800 text-xl text-center">Author</div>
             <div className="flex w-full pt-4">
               <div className="pr-4 flex flex-col justify-center">
                 <Avatar size="big" name={blog.author.name || "Anonymous"} />
