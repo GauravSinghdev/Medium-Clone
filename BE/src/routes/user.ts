@@ -95,6 +95,76 @@ userRouter.post('/signin', async (c) => {
     }
 })
 
+userRouter.get('/user-details', async (c) => {
+  try{
+    const authHeader = c.req.header('authorization') || ""; // Remove error of TypeScript
+    const user = await verify(authHeader, c.env.JWT_SECRET);
+
+    if(!user)
+    {
+      c.status(403);
+      return c.json({
+        message: "not logged in"
+      })
+    }
+
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+
+    const User = await prisma.user.findFirst({
+      where: {
+          id: Number(user.id)
+      },
+    })
+    
+    return c.json({
+      User
+    })
+  } catch(e){
+    c.status(411);
+    return c.text('Invalid');
+  }
+})
+
+userRouter.put('/edit-bio', async (c) => {
+  console.log("hey")
+  try{
+    const body = await c.req.json();
+    const authHeader = c.req.header('authorization') || ""; // Remove error of TypeScript
+    const user = await verify(authHeader, c.env.JWT_SECRET);
+
+    if(!user)
+    {
+      c.status(403);
+      return c.json({
+        message: "not logged in"
+      })
+    }
+
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+
+    const User = await prisma.user.update({
+      where: {
+          id: Number(user.id)
+      },
+      data: {
+          bio: body.bio,
+      }
+    })
+
+  return c.json({
+      User
+  })
+
+  }catch(e){
+    c.status(411);
+    return c.text('Invalid');
+  }
+})
+
 userRouter.delete('/delete', async (c) => {
   try{
     const authHeader = c.req.header('authorization') || ""; // Remove error of TypeScript

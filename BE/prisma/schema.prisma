@@ -12,7 +12,7 @@ model User {
   name     String? @unique
   username String  @unique
   password String
-  bio      String?
+  bio      String   @default("")
   createdDate DateTime @default(now())
   posts    Blog[] @relation("UserPosts")
 }
@@ -26,3 +26,6 @@ model Blog {
   createdDate DateTime @default(now())
   author      User     @relation("UserPosts", fields: [authorId], references: [id], onDelete: Cascade)
 }
+
+
+//npx prisma migrate dev --name init_schema
