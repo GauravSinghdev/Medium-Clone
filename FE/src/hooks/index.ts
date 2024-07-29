@@ -9,7 +9,8 @@ export interface Blogs{
     "id" : number;
     "createdDate" : string,
     "author" : {
-        "name" : string;
+        "name" : string,
+        "bio" : string
     }
 }
 

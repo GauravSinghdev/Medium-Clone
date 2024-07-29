@@ -95,6 +95,42 @@ userRouter.post('/signin', async (c) => {
     }
 })
 
+// userRouter.get('/bio', async (c) => {
+
+//     const id = c.req.param('id');
+
+//     const prisma = new PrismaClient({
+//         datasourceUrl: c.env.DATABASE_URL,
+//     }).$extends(withAccelerate())
+
+//     try{
+//         const blog = await prisma.user.findFirst({
+//             where: {
+//                 id: Number(id)
+//             },
+//             select: {
+//                 id: true,
+//                 bio: true,
+//                 content: true,
+//                 author: {
+//                     select:{
+//                         name: true
+//                     }
+//                 },
+//                 createdDate: true,
+//             }
+//         })
+
+//         return c.json({
+//             blog
+//         })
+//   } catch (e) {
+//     c.status(500);
+//     return c.text('Internal Server Error');
+//   }
+// });
+
+
 userRouter.get('/user-details', async (c) => {
   try{
     const authHeader = c.req.header('authorization') || ""; // Remove error of TypeScript

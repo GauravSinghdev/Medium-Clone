@@ -2,34 +2,15 @@ import { useEffect, useState } from "react";
 import { Blogs } from "../hooks";
 import Appbar from "./Appbar";
 import { Avatar } from "./BlogCard";
-import axios from "axios";
-import { BACKEND_URL } from "../config";
+
 import { CgShapeZigzag } from "react-icons/cg";
 
 const FullBlog = ({ blog }: { blog: Blogs }) => {
 
   const [bio, setBio] = useState<String>("");
-
-  const showBio = async () => {
-    try {
-      console.log("hey");
-      const token = localStorage.getItem("token");
-      const response = await axios.get(`${BACKEND_URL}/user/user-details`,{
-        headers: {
-          Authorization: token,
-        }
-      });
-      console.log(response.data.User);
-      setBio(response.data.User.bio);
-      console.log('Got Bio from BE');
-    } catch (error) {
-      console.error('Failed to get bio', error);
-    }
-  };
-
   useEffect(() => {
-    showBio();
-  }, []);
+    setBio(blog.author.bio)
+  },[])
 
   // Convert and format the blog creation date
   const formattedDate = new Date(blog.createdDate).toLocaleDateString("en-US", {
