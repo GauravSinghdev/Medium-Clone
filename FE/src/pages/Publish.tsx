@@ -3,10 +3,13 @@ import Appbar from "../components/Appbar";
 import { BACKEND_URL } from "../config";
 import { ChangeEvent, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "../components/Spinner";
 
 const Publish = () => {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
+    const [spin, setSpin] = useState(false);
+    const [error, setError] = useState(false);
     const [description, setDescription] = useState("");
     const titleInputRef = useRef<HTMLInputElement>(null);
 
@@ -37,9 +40,21 @@ const Publish = () => {
                     <TextEditor onChange={(e) => {
                         setDescription(e.target.value);
                     }} />
-                    <div className="text-right">
+                    <div className="flex justify-between">
+                        <div>
+                           {error && <p className="text-red-600 text-lg">Title and Stories are required!</p>}
+                        </div>
                         <button
                             onClick={async () => {
+                                const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+                                setSpin(true);
+                                await delay(1000);
+                                if(!title || !description)
+                                {
+                                    setError(true);
+                                    setSpin(false);
+                                    return;
+                                }
                                 const response = await axios.post(`${BACKEND_URL}/blog`, {
                                     title,
                                     content: description
@@ -48,14 +63,22 @@ const Publish = () => {
                                         Authorization: localStorage.getItem('token')
                                     }
                                 });
+                                setError(false);
                                 navigate(`/blog/${response.data.id}`);
                             }}
                             type="submit"
-                            className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                        >
-                            Publish
+                            className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-5">
+                            <div className='grid grid-cols-5 gap-1'>
+                                <div className="col-span-3">
+                                    Publish
+                                </div>
+                                <div className="col-span-2">
+                                    { spin && <Spinner size={"small"}/>}
+                                </div>
+                            </div>
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
