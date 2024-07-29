@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BACKEND_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,7 +25,10 @@ const Dashboard = () => {
   const [bio, setBio] = useState<string>(''); // State for bio text
 
   const handleBioChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    setBio(e.target.value); // Update bio state
+    const b = e.target.value.trim();
+    console.log(b);
+    console.log(b.length)
+    setBio(b); // Update bio state
   };
 
   const handleDeleteAccount = async () => {
@@ -46,10 +49,47 @@ const Dashboard = () => {
     }
   };
 
-  // useEffect(()=>)
+  const handleBio = async () => {
+    try {
+      console.log("hey")
+      const token = localStorage.getItem("token");
+      // Replace this with your actual API call or mutation
+      const response = await axios.put(`${BACKEND_URL}/user/edit-bio`, {bio}, {
+        headers: {
+            Authorization: token,
+        },
+    });
+      console.log(response.data);
+      setBio(response.data.User)
+      console.log('Bio added user account');
+    } catch (error) {
+      console.error('Failed to edit bio', error);
+    }
+  }
+
+  const showBio = async () => {
+    try{
+      console.log("hey")
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`${BACKEND_URL}/user/user-details`,{
+        headers: {
+          Authorization: token,
+        }
+      });
+      console.log(response.data.User)
+      setBio(response.data.User.bio);
+      console.log('Got Bio from BE');
+    } catch (error) {
+      console.error('Failed to get bio', error);
+    }
+  }
+
+  useEffect(()=>{
+    showBio();
+  },[])
 
   return (
-    <div className="mx-4 min-h-screen max-w-screen-2xl mt-20 sm:mx-8 xl:mx-auto">
+    <div className="mx-4 max-w-screen-2xl mt-20 sm:mx-8 xl:mx-auto">
       <div className="grid grid-cols-8 pt-3 sm:grid-cols-10">
         <div className="col-span-8 overflow-hidden rounded-xl bg-white px-4 py-6 sm:bg-gray-50 sm:px-8 sm:shadow">
           <div className="pt-4">
@@ -61,12 +101,7 @@ const Dashboard = () => {
             <p className="text-gray-600">
               Your email address is <strong>{localStorage.getItem('email')}</strong>
             </p>
-            <button
-              onClick={() => {/* Handle email change */}}
-              className="inline-flex text-sm font-semibold text-blue-600 underline decoration-2"
-            >
-              Change
-            </button>
+            
           </div>
           {
               !true && 
@@ -81,7 +116,7 @@ const Dashboard = () => {
             className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300"
           />
           <button
-            onClick={() => {/* Save bio */}}
+            onClick={handleBio}
             className="mt-2 inline-flex text-sm font-semibold text-blue-600 underline decoration-2"
           >
             Save Bio
@@ -112,3 +147,11 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+/* <button
+              onClick={() => {/* Handle email change */
+            //   className="inline-flex text-sm font-semibold text-blue-600 underline decoration-2"
+            // >
+            //   Change
+            // </button> */}
