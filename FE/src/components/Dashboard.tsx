@@ -62,6 +62,7 @@ const Dashboard = () => {
       setBio(response.data.User.bio);
       console.log(response.data);
       console.log('Bio added user account');
+      alert("Bio updated successfully!");
       showBio();
     } catch (error) {
       console.error('Failed to edit bio', error);
