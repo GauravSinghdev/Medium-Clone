@@ -3,8 +3,7 @@ import Quote from '../components/Quote'
 
 const Signin = () => {
   return (
-    <div className='bg-gray-100'>
-        <div className='grid grid-cols-1 lg:grid-cols-2'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 bg-gray-100'>
             <div>
                 <Auth type="signin"/>
             </div>
@@ -13,7 +12,6 @@ const Signin = () => {
                 <Quote/>
             </div>
         </div>
-    </div>
   )
 }
 

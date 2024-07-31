@@ -13,10 +13,10 @@ const BlogCard = ({ id, authorName, title, content, publishedDate } : BlogCardPr
   let newAuthorName;
   let dateString = publishedDate.replace('am', 'AM').replace('pm', 'PM');
   console.log(`name is ${authorName}`)
-  if(authorName == localStorage.getItem('name'))
-  {
-    newAuthorName = "Me";
-  }
+  // if(authorName == localStorage.getItem('name'))
+  // {
+  //   newAuthorName = "Me";
+  // }
   return (
     <Link to={`/blog/${id}`}>
             <div className='border-b border-slate-200 sm:p-4 py-4 p-2 w-screen max-w-screen-md cursor-pointer'>

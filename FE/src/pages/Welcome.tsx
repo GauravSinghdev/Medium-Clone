@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
+import Footer from "../components/Header";
 import { useEffect } from "react";
+import Header from "../components/Header";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Welcome = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <Header />
       <div className="bg-slate-200 flex justify-center items-center flex-grow">
         <div className="flex flex-col gap-2 text-center">
           <div className="text-3xl font-bold">
@@ -33,7 +35,6 @@ const Welcome = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
