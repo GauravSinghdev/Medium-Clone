@@ -4,7 +4,7 @@ const Quote = () => {
     <div className='bg-slate-200 h-screen flex justify-center'>
         <div className='flex justify-center flex-col gap-2'>
             <div className='max-w-md text-3xl font-bold'>
-                "The customer support I received was exceptional. The support tema went above and beyond to address my concerns."
+                "The customer support I received was exceptional. The support team went above and beyond to address my concerns."
             </div>     
             <div>
                 <div className='max-w-md text-xl font-semibold'>
