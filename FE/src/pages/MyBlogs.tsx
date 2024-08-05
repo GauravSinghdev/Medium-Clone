@@ -41,7 +41,7 @@ const MyBlogs = () => {
     }
     
   return (
-    <div className='bg-gray-100'>
+    <div className='bg-gray-100 min-h-screen'>
         <Appbar/>
         <div className='flex flex-col justify-center items-center'>
         {/* <div className='text-5xl font-semibold font-[cursive] my-5 underline underline-offset-4'>
