@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Header";
 import { useEffect } from "react";
 import Header from "../components/Header";
 
