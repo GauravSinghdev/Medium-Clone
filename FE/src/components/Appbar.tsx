@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Avatar } from './BlogCard';
 import { PiNotePencil } from "react-icons/pi";
 import DropMenu from './DropMenu';
-import { Link } from 'react-router-dom';
-
 const Appbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null); // Create a ref for the dropdown menu
