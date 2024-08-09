@@ -32,7 +32,7 @@ const Appbar = () => {
   return (
     <div className='border-b flex justify-between px-4 sm:px-6 md:px-10 lg:px-20 py-1 items-center'>
       <div className='text-2xl sm:text-3xl font-bold font-[serif] cursor-pointer'>
-        <Link to="/blogs">MediClone</Link>
+        <a href="/blogs" className='font-cascadia'>MediClone</a>
       </div>
 
       <div className='flex items-center'>

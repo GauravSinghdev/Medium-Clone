@@ -24,13 +24,13 @@ const BlogCard = ({ id, authorName, title, content, publishedDate } : BlogCardPr
                   <div className='flex justify-center flex-col'>
                       <Avatar size={'small'} name={authorName}/>
                   </div>
-                  <div className='font-extralight pl-2 flex justify-center flex-col'>
+                  <div className='font-extralight pl-2 flex justify-center flex-col '>
                       {newAuthorName || authorName}
                   </div>
                   <div className='flex justify-center flex-col pl-2'>
                       <Circle/>
                   </div>
-                  <div className='pl-2 font-thin text-slate-500 flex justify-center flex-col text-sm'>
+                  <div className='pl-2 font-thin text-slate-500 flex justify-center flex-col text-sm font-cascadia'>
                   {`${Math.ceil(content.length/100)} min read`}
 
                   </div>
@@ -42,7 +42,7 @@ const BlogCard = ({ id, authorName, title, content, publishedDate } : BlogCardPr
         <div className='text-md font-thin'>
             {content.slice(0,100) + "..."}
         </div>
-        <div className='text-slate-500 text-sm font-thin pt-4'>
+        <div className='text-slate-500 text-sm font-bold pt-4 font-cascadia'>
         {dateString}
 
         </div>
