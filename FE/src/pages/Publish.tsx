@@ -95,7 +95,7 @@ function TextEditor({ onChange }: { onChange: (e: ChangeEvent<HTMLTextAreaElemen
                             onChange={onChange}
                             id="editor"
                             rows={8}
-                            className="block w-full p-2 text-xl text-gray-800 bg-white focus:outline-none border-none outline-none focus:bg-slate-200"
+                            className="block w-full p-2 text-xl text-gray-800 bg-white focus:outline-none border-none outline-none focus:bg-slate-200 resize-none"
                             placeholder="Tell your story..."
                             required
                         />
