@@ -2,6 +2,7 @@ import BlogCard from '../components/BlogCard'
 import Appbar from '../components/Appbar'
 import useBlogs from '../hooks'
 import BlogSkeleton from '../components/BlogSkeleton';
+import { useEffect } from 'react';
 
 const MyBlogs = () => {
 
@@ -9,6 +10,10 @@ const MyBlogs = () => {
     console.log(typeof(blogs));
     console.log(blogs);
     const userName = localStorage.getItem('name');
+
+    useEffect(() => {
+        document.title = "My Blogs - MediClone"
+    })
     
 
     const newBlogs = blogs.filter((ele) => ele.author.name === userName)

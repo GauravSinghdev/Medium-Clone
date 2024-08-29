@@ -14,6 +14,7 @@ const Publish = () => {
     const titleInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
+        document.title = "Publish Your Story - MediClone"
         const token = localStorage.getItem('token');
         if(!token){
             navigate("/signin");

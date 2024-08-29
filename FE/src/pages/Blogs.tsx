@@ -2,11 +2,16 @@ import BlogCard from '../components/BlogCard'
 import Appbar from '../components/Appbar'
 import useBlogs from '../hooks'
 import BlogSkeleton from '../components/BlogSkeleton';
+import { useEffect } from 'react';
 
 const Blogs = () => {
 
     const {loading, blogs} = useBlogs();
     console.log(typeof(blogs));
+
+    useEffect(() => {
+        document.title = "Blogs - MediClone"
+    })
 
     if(loading) {
         return (

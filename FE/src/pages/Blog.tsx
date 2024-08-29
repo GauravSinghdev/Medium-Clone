@@ -3,12 +3,19 @@ import FullBlog from "../components/FullBlog";
 import { useBlog } from "../hooks";
 import Appbar from "../components/Appbar";
 import { Spinner } from "../components/Spinner";
+import { useEffect } from "react";
 
 const Blog = () => {
   const {id} = useParams();
   const { loading, blog } = useBlog({
     id: id || ""
   });
+
+  const bTitle = blog?.title || "Title..."
+
+  useEffect(() => {
+    document.title = ` ${bTitle} - MediClone`
+  })
 
   if(loading || !blog){
     return <div>
