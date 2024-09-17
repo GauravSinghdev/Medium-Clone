@@ -6,13 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Medium-Clone | @codewithkara</title>
 
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx">
-      if('serviceWorker' in navigator){
-        navigator.serviceWorker.register('/service-worker.js');
+    <!-- Install button, initially hidden -->
+    <button id="install-button" style="display: none;">Install App</button>
+
+    <!-- Main script -->
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Service Worker Registration Script -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          }).catch((error) => {
+            console.error('Service Worker registration failed:', error);
+          });
+        });
+      }
+    </script>
+
+    <!-- Install Prompt Handling Script -->
+    <script>
+      let deferredPrompt;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the mini-infobar from appearing on mobile
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI to notify the user they can install the PWA
+        showInstallButton(); // Show your install button here
+      });
+
+      document.getElementById('install-button').addEventListener('click', () => {
+        // Hide the app provided install promotion
+        hideInstallButton(); // Hide your install button here
+        // Show the install prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+
+      function showInstallButton() {
+        const installButton = document.getElementById('install-button');
+        if (installButton) {
+          installButton.style.display = 'block';
+        }
+      }
+
+      function hideInstallButton() {
+        const installButton = document.getElementById('install-button');
+        if (installButton) {
+          installButton.style.display = 'none';
+        }
       }
     </script>
   </body>
