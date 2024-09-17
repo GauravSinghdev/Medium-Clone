@@ -1,0 +1,17 @@
+{
+    "name": "MediClone",
+    "short_name": "MediClone",
+    "start_url": "?home=true",
+    "icons": [
+        {
+            "src": "src/assets/image/mdClone.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        }
+    ],
+    "theme_color": "#000000",
+    "background_color" : "#FFFFFF",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}
